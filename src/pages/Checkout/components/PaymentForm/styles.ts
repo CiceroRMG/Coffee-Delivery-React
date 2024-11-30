@@ -5,7 +5,8 @@ export const PaymentFormDataContainer = styled.div`
   flex-direction: column;
   gap: 0.75rem;
 `
-export const LocationInfosContainer = styled.div`
+
+const BasedStyleContainer = styled.div`
   display: flex;
   flex-direction: column;
   padding: 2.5rem;
@@ -13,7 +14,10 @@ export const LocationInfosContainer = styled.div`
   border-radius: 6px;
   gap: 2rem;
 `
-export const LocationInfoHeader = styled.div`
+
+export const LocationInfosContainer = styled(BasedStyleContainer)``
+
+const BasedInfoHeader = styled.div`
   display: flex;
   align-items: flex-start;
   gap: 0.5rem;
@@ -25,10 +29,6 @@ export const LocationInfoHeader = styled.div`
     font-size: 1rem;
     font-weight: 400;
     line-height: 130%;
-  }
-
-  svg {
-    color: ${(props) => props.theme['yellow-700']};
   }
 
   .textHeader {
@@ -43,6 +43,7 @@ export const LocationInfoHeader = styled.div`
     }
   }
 `
+
 export const LocationInputsContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -110,5 +111,65 @@ export const LocationInputsContainer = styled.div`
     & .ufInput {
       max-width: 3.75rem;
     }
+  }
+`
+
+export const LocationInfoHeader = styled(BasedInfoHeader)`
+  svg {
+    color: ${(props) => props.theme['yellow-700']};
+  }
+`
+
+export const PaymentInfosContainer = styled(BasedStyleContainer)``
+
+export const PaymentInfoHeader = styled(BasedInfoHeader)`
+  svg {
+    color: ${(props) => props.theme['purple-500']};
+  }
+`
+
+export const RadioPaymentContent = styled.div`
+  display: flex;
+  gap: 0.75rem;
+  flex: 1;
+
+  div {
+    flex: 1;
+  }
+
+  input[type='radio'] {
+    display: none;
+  }
+
+  label {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1rem;
+    border: 1px solid transparent;
+    border-radius: 6px;
+    background: ${(props) => props.theme['gray-400']};
+    cursor: pointer;
+    transition: background-color 0.2s;
+    transition: border-color 0.2s;
+    text-transform: uppercase;
+
+    color: ${(props) => props.theme['gray-700']};
+    font-size: 0.75rem;
+    line-height: 160%;
+
+    &:hover {
+      background-color: ${(props) => props.theme['purple-300']};
+      border-color: ${(props) => props.theme['purple-500']};
+    }
+
+    & svg {
+      color: ${(props) => props.theme['purple-500']};
+    }
+  }
+
+  input[type='radio']:checked + label {
+    background-color: ${(props) => props.theme['purple-300']};
+    border-color: ${(props) => props.theme['purple-500']};
   }
 `

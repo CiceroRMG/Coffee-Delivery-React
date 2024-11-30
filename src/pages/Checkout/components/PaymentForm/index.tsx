@@ -1,9 +1,18 @@
-import { CurrencyDollar, MapPinLine } from '@phosphor-icons/react'
+import {
+  Bank,
+  CreditCard,
+  CurrencyDollar,
+  MapPinLine,
+  Money,
+} from '@phosphor-icons/react'
 import {
   LocationInfoHeader,
   LocationInfosContainer,
   LocationInputsContainer,
   PaymentFormDataContainer,
+  PaymentInfoHeader,
+  PaymentInfosContainer,
+  RadioPaymentContent,
 } from './styles'
 
 export function PaymentFormData() {
@@ -64,31 +73,40 @@ export function PaymentFormData() {
           </div>
         </LocationInputsContainer>
       </LocationInfosContainer>
-      <div>
-        <header>
-          <CurrencyDollar weight="regular" />
-          <div>
+      <PaymentInfosContainer>
+        <PaymentInfoHeader>
+          <CurrencyDollar weight="regular" size={22} />
+          <div className="textHeader">
             <h3>Pagamento</h3>
             <span>
               O pagamento é feito na entrega. Escolha a forma que deseja pagar
             </span>
           </div>
-        </header>
-        <div>
+        </PaymentInfoHeader>
+        <RadioPaymentContent>
           <div>
             <input type="radio" name="paymentType" id="creditCard" />
-            <label htmlFor="creditCard">Cartão de Crédito</label>
+            <label htmlFor="creditCard">
+              <CreditCard weight="regular" size={16} />
+              Cartão de Crédito
+            </label>
           </div>
           <div>
             <input type="radio" name="paymentType" id="debitCard" />
-            <label htmlFor="debitCard">Cartão de Débito</label>
+            <label htmlFor="debitCard">
+              <Bank weight="regular" size={16} />
+              Cartão de Débito
+            </label>
           </div>
           <div>
             <input type="radio" name="paymentType" id="fisicMoney" />
-            <label htmlFor="fisicMoney">Dinheiro</label>
+            <label htmlFor="fisicMoney">
+              <Money weight="regular" size={16} />
+              Dinheiro
+            </label>
           </div>
-        </div>
-      </div>
+        </RadioPaymentContent>
+      </PaymentInfosContainer>
     </PaymentFormDataContainer>
   )
 }
