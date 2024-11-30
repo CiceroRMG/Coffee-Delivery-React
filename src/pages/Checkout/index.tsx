@@ -1,5 +1,16 @@
+import { Trash } from '@phosphor-icons/react'
 import { PaymentFormData } from './components/PaymentForm'
-import { CheckoutContainer, FormDataContainer } from './styles'
+import {
+  CheckoutContainer,
+  CoffeInfosAmountAndDelete,
+  CoffeInfosContent,
+  CoffeSelectedInfosContainer,
+  FormConfirmOrderBox,
+  FormConfirmOrderContainer,
+  FormDataContainer,
+  TotalAndConfirmOrderContainer,
+  TotalPriceContent,
+} from './styles'
 
 export function Checkout() {
   return (
@@ -9,28 +20,70 @@ export function Checkout() {
         <PaymentFormData />
       </FormDataContainer>
 
-      <div>
-        <h3>Cafés selecionados</h3>
+      <FormConfirmOrderBox>
+        <h3 className="formTitle">Cafés selecionados</h3>
 
-        <ul>
-          <li>Lista de cafes selecionados</li>
-        </ul>
+        <FormConfirmOrderContainer>
+          <ul className="selectedCoffeesList">
+            <li>
+              <CoffeSelectedInfosContainer>
+                <CoffeInfosContent>
+                  <img src="/src/assets/americano.svg" alt="" />
+                  <CoffeInfosAmountAndDelete>
+                    <span>Expresso Americano</span>
+                    <div className="amountAndDeleteInputs">
+                      <input type="number" />
+                      <button>
+                        <Trash weight="regular" size={16} />
+                        <span>Remover</span>
+                      </button>
+                    </div>
+                  </CoffeInfosAmountAndDelete>
+                </CoffeInfosContent>
 
-        <div>
-          <span>
-            Total de itens<span>R$ 40,00</span>
-          </span>
-          <span>
-            Entrega
-            <span>R$ 3,50</span>
-          </span>
-          <span>
-            Total
-            <span>R$ 50,00</span>
-          </span>
-          <button>Confirmar Pedido</button>
-        </div>
-      </div>
+                <span className="priceTag">R$ 9,90</span>
+              </CoffeSelectedInfosContainer>
+            </li>
+            <li>
+              <CoffeSelectedInfosContainer>
+                <CoffeInfosContent>
+                  <img src="/src/assets/americano.svg" alt="" />
+                  <CoffeInfosAmountAndDelete>
+                    <span>Expresso Americano</span>
+                    <div className="amountAndDeleteInputs">
+                      <input type="number" />
+                      <button>
+                        <Trash weight="regular" size={16} />
+                        <span>Remover</span>
+                      </button>
+                    </div>
+                  </CoffeInfosAmountAndDelete>
+                </CoffeInfosContent>
+
+                <span className="priceTag">R$ 9,90</span>
+              </CoffeSelectedInfosContainer>
+            </li>
+          </ul>
+
+          <TotalAndConfirmOrderContainer>
+            <TotalPriceContent>
+              <span>
+                <span className="infoDescription">Total de itens</span>
+                <span className="priceInfo">R$ 40,00</span>
+              </span>
+              <span>
+                <span className="infoDescription">Entrega</span>
+                <span className="priceInfo">R$ 3,50</span>
+              </span>
+              <span className="totalPriceInfo">
+                <span>Total</span>
+                <span>R$ 50,00</span>
+              </span>
+            </TotalPriceContent>
+            <button>Confirmar Pedido</button>
+          </TotalAndConfirmOrderContainer>
+        </FormConfirmOrderContainer>
+      </FormConfirmOrderBox>
     </CheckoutContainer>
   )
 }
