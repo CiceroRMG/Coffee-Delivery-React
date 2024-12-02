@@ -1,22 +1,25 @@
 import { Minus, Plus } from '@phosphor-icons/react'
-import { useState } from 'react'
 import { InputNumberContainer } from './styles'
 
 interface InputNumberProps {
   max?: number
+  value: number
+  changeValue: (changedValue: number) => void
 }
 
-export function InputNumber({ max = 999 }: InputNumberProps) {
-  const [value, setValue] = useState(1)
-
+export function InputNumber({
+  max = 999,
+  changeValue,
+  value,
+}: InputNumberProps) {
   function handleIncreaseValue() {
     if (value < max) {
-      setValue(value + 1)
+      changeValue(value + 1)
     }
   }
   function handleDecreaseValue() {
     if (value > 1) {
-      setValue(value - 1)
+      changeValue(value - 1)
     }
   }
 

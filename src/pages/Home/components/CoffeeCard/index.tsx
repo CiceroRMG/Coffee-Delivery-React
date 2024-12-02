@@ -7,10 +7,16 @@ import {
   TagsContainer,
 } from './styles'
 import { InputNumber } from '../../../../components/InputNumber'
+import { useState } from 'react'
 
 interface Tag {
   content: string
   id: string
+}
+
+interface CoffeOnList {
+  id: string
+  quantity: number
 }
 
 export interface CoffeeCardProps {
@@ -23,12 +29,30 @@ export interface CoffeeCardProps {
 }
 
 export function CoffeeCard({
+  id,
   imgUrl,
   tags,
   title,
   info,
   price,
 }: CoffeeCardProps) {
+  const [value, setValue] = useState(1)
+  const [selectedCoffees, setSelectedCoffees] = useState<CoffeOnList[]>([])
+
+  function changeValue(valueChanged: number) {
+    setValue(valueChanged)
+  }
+
+  function handleAddCoffeToList() {
+    const newAddedCoffe = {
+      id,
+      quantity: value,
+    }
+
+    setSelectedCoffees([...selectedCoffees, newAddedCoffe])
+    setValue(1)
+  }
+
   return (
     <CoffeeCardContainer>
       <img src={imgUrl} alt="" />
@@ -51,8 +75,8 @@ export function CoffeeCard({
         </PriceContent>
 
         <AmountContainer>
-          <InputNumber max={9} />
-          <button title="Adicionar ao carrinho">
+          <InputNumber max={9} changeValue={changeValue} value={value} />
+          <button title="Adicionar ao carrinho" onClick={handleAddCoffeToList}>
             <ShoppingCartSimple size={22} weight="fill" />
           </button>
         </AmountContainer>
