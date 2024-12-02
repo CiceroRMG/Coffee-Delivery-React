@@ -94,7 +94,7 @@ export const AmountContainer = styled.div`
     gap: 0.25rem;
   }
 
-  button {
+  & > button {
     background-color: ${(props) => props.theme['purple-700']};
     border: none;
     color: ${(props) => props.theme.white};

@@ -6,6 +6,7 @@ import {
   PriceContent,
   TagsContainer,
 } from './styles'
+import { InputNumber } from '../../../../components/InputNumber'
 
 interface Tag {
   content: string
@@ -50,7 +51,7 @@ export function CoffeeCard({
         </PriceContent>
 
         <AmountContainer>
-          <input type="number" step={1} min={1} max={12} placeholder="0" />
+          <InputNumber max={9} />
           <button title="Adicionar ao carrinho">
             <ShoppingCartSimple size={22} weight="fill" />
           </button>

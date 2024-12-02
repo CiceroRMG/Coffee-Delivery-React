@@ -97,22 +97,12 @@ export const CoffeInfosAmountAndDelete = styled.div`
   .amountAndDeleteInputs {
     display: flex;
     justify-content: flex-start;
+    align-items: center;
     gap: 0.5rem;
 
-    input[type='number'] {
-      background-color: ${(props) => props.theme['gray-400']};
-      padding: 0.5rem;
-      border: none;
-      text-align: center;
-      border-radius: 6px;
-      max-width: 4.5rem;
-
-      justify-content: center;
-    }
-
-    button {
+    .trashButton {
       display: flex;
-      padding: 0rem 0.5rem;
+      padding: 0.5rem;
       justify-content: center;
       align-items: center;
       gap: 0.25rem;
@@ -135,7 +125,7 @@ export const CoffeInfosAmountAndDelete = styled.div`
     }
   }
 
-  button:hover {
+  .trashButton:hover {
     background-color: ${(props) => props.theme['gray-500']};
   }
 `
@@ -144,13 +134,14 @@ export const TotalAndConfirmOrderContainer = styled.div`
   flex-direction: column;
   gap: 1.5rem;
 
-  button {
+  .confirmButton {
     display: flex;
     padding: 0.75rem 0.5rem;
     justify-content: center;
     align-items: center;
     align-self: stretch;
     cursor: pointer;
+    text-decoration: none;
 
     border-radius: 0.375rem;
     background: ${(props) => props.theme['yellow-500']};
@@ -165,7 +156,7 @@ export const TotalAndConfirmOrderContainer = styled.div`
     transition: background 0.15s;
   }
 
-  button:hover {
+  .confirmButton:hover {
     background: ${(props) => props.theme['yellow-700']};
   }
 `

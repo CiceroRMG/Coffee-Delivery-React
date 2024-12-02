@@ -11,6 +11,8 @@ import {
   TotalAndConfirmOrderContainer,
   TotalPriceContent,
 } from './styles'
+import { NavLink } from 'react-router-dom'
+import { InputNumber } from '../../components/InputNumber'
 
 export function Checkout() {
   return (
@@ -32,8 +34,8 @@ export function Checkout() {
                   <CoffeInfosAmountAndDelete>
                     <span>Expresso Americano</span>
                     <div className="amountAndDeleteInputs">
-                      <input type="number" />
-                      <button>
+                      <InputNumber max={9} />
+                      <button className="trashButton">
                         <Trash weight="regular" size={16} />
                         <span>Remover</span>
                       </button>
@@ -51,8 +53,8 @@ export function Checkout() {
                   <CoffeInfosAmountAndDelete>
                     <span>Expresso Americano</span>
                     <div className="amountAndDeleteInputs">
-                      <input type="number" />
-                      <button>
+                      <InputNumber max={9} />
+                      <button className="trashButton">
                         <Trash weight="regular" size={16} />
                         <span>Remover</span>
                       </button>
@@ -80,7 +82,9 @@ export function Checkout() {
                 <span>R$ 50,00</span>
               </span>
             </TotalPriceContent>
-            <button>Confirmar Pedido</button>
+            <NavLink to={'/success'} className={'confirmButton'}>
+              Confirmar Pedido
+            </NavLink>
           </TotalAndConfirmOrderContainer>
         </FormConfirmOrderContainer>
       </FormConfirmOrderBox>
