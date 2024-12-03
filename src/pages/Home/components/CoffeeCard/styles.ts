@@ -33,6 +33,17 @@ export const CoffeeCardContainer = styled.div`
     line-height: 130%;
     padding-bottom: 2rem;
   }
+
+  .dialog {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #333;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  }
 `
 export const TagsContainer = styled.div`
   ul {
@@ -105,5 +116,11 @@ export const AmountContainer = styled.div`
     border-radius: 6px;
     gap: 0.5rem;
     cursor: pointer;
+
+    transition: background 0.25s;
+  }
+
+  & > button:hover {
+    background: ${(props) => props.theme['purple-500']};
   }
 `

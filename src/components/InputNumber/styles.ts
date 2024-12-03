@@ -23,4 +23,8 @@ export const InputNumberContainer = styled.div`
     align-items: center;
     cursor: pointer;
   }
+
+  button:hover {
+    color: ${(props) => props.theme['yellow-500']};
+  }
 `

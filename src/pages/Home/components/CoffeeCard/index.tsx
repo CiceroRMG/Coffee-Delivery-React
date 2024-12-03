@@ -7,7 +7,7 @@ import {
   TagsContainer,
 } from './styles'
 import { InputNumber } from '../../../../components/InputNumber'
-import { useContext, useState } from 'react'
+import { useContext, useState, useEffect } from 'react'
 import { CoffeeListContext } from '../../../../contexts/CoffeeListContext'
 
 interface Tag {
@@ -40,6 +40,16 @@ export function CoffeeCard({
   const [value, setValue] = useState(1)
   const { addCoffeeToList, selectedCoffees, updateCoffeeList } =
     useContext(CoffeeListContext)
+  const [showDialog, setShowDialog] = useState(false)
+
+  useEffect(() => {
+    if (showDialog) {
+      const timer = setTimeout(() => {
+        setShowDialog(false)
+      }, 3000)
+      return () => clearTimeout(timer)
+    }
+  }, [showDialog])
 
   function changeValue(valueChanged: number) {
     setValue(valueChanged)
@@ -68,6 +78,7 @@ export function CoffeeCard({
     }
 
     setValue(1)
+    setShowDialog(true)
   }
 
   return (
@@ -98,6 +109,7 @@ export function CoffeeCard({
           </button>
         </AmountContainer>
       </PriceAndAmountContainer>
+      {showDialog && <div className="dialog">Adicionado ao carrinho</div>}
     </CoffeeCardContainer>
   )
 }

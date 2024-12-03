@@ -23,6 +23,12 @@ export const NavContainer = styled.nav`
     padding: 0.5rem;
     border-radius: 6px;
     position: relative;
+    transition: background 0.2s;
+  }
+
+  a:hover {
+    background-color: ${(props) => props.theme['yellow-500']};
+    color: ${(props) => props.theme.white};
   }
 
   .quantityOrdersAdded {
