@@ -3,9 +3,11 @@ import { NavLink } from 'react-router-dom'
 import { HeaderLayout, LocationContent, NavContainer } from './styles'
 import { useContext } from 'react'
 import { CoffeeListContext } from '../../contexts/CoffeeListContext'
+import { useLocation } from '../../utils/userLocation'
 
 export function Header() {
   const { selectedCoffees } = useContext(CoffeeListContext)
+  const { location } = useLocation()
 
   const coffesListLenght = selectedCoffees.length
   const isCoffeListVoid = coffesListLenght < 1
@@ -18,7 +20,15 @@ export function Header() {
       <NavContainer>
         <LocationContent>
           <MapPin weight="fill" size={22} />
-          <span>Cidade</span>
+          <span>
+            {location ? (
+              <>
+                {location.city}, {location.state}
+              </>
+            ) : (
+              <>Florianópolis, SC</>
+            )}
+          </span>
         </LocationContent>
         <NavLink to="/checkout" title="Carrinho">
           <ShoppingCart weight="fill" size={22} />

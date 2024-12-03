@@ -12,7 +12,7 @@ import {
   TotalPriceContent,
 } from './styles'
 import { InputNumber } from '../../components/InputNumber'
-import { useContext, useEffect } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { CoffeeListContext } from '../../contexts/CoffeeListContext'
 import { CoffeeCardProps } from '../Home/components/CoffeeCard'
 import * as zod from 'zod'
@@ -58,6 +58,7 @@ const newOrderFormValidationSchema = zod.object({
 export type NewOrderFormData = zod.infer<typeof newOrderFormValidationSchema>
 
 export function Checkout() {
+  const [deliveryPrice, setDeliveryPrice] = useState(0)
   const { selectedCoffees, updateCoffeeList } = useContext(CoffeeListContext)
   const navigate = useNavigate()
 
@@ -91,8 +92,10 @@ export function Checkout() {
 
     if (cepInput && cepInput.length === 8) {
       fetchAddress(cepInput)
+      const randomNumber = Math.floor(Math.random() * (20 - 3 + 1)) + 3
+      setDeliveryPrice(randomNumber)
     }
-  }, [cepInput, setValue])
+  }, [cepInput, setValue, setDeliveryPrice])
 
   const selectedCoffeesWithInfos = coffeeCardsListWithInfos
     .filter((coffeeInfo) =>
@@ -114,8 +117,7 @@ export function Checkout() {
     return total + coffee.quantity * Number(coffee.price)
   }, 0)
 
-  const deliveryPrice = 3.5
-  const totalPriceWithDelivery = totalItensPrice + deliveryPrice
+  const totalPriceWithDelivery = totalItensPrice + (deliveryPrice || 0)
 
   function changeQuantityCoffe(id: string, quantity: number) {
     const updatedCoffees = selectedCoffees.map((coffee) =>
@@ -201,7 +203,11 @@ export function Checkout() {
                 <span>
                   <span className="infoDescription">Entrega</span>
                   <span className="priceInfo">
-                    R$ {deliveryPrice.toFixed(2)}
+                    {deliveryPrice ? (
+                      <>R$ {deliveryPrice.toFixed(2)}</>
+                    ) : (
+                      <>A calcular</>
+                    )}
                   </span>
                 </span>
                 <span className="totalPriceInfo">
