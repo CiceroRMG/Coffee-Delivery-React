@@ -59,6 +59,7 @@ export type NewOrderFormData = zod.infer<typeof newOrderFormValidationSchema>
 
 export function Checkout() {
   const [deliveryPrice, setDeliveryPrice] = useState(0)
+  const [isLoading, setIsLoading] = useState(false)
   const { selectedCoffees, updateCoffeeList } = useContext(CoffeeListContext)
   const navigate = useNavigate()
 
@@ -68,8 +69,10 @@ export function Checkout() {
 
   const { watch, handleSubmit, reset, setValue } = newOrderForm
 
-  function handleCreateNewOrder(data: NewOrderFormData) {
-    console.log(data)
+  async function handleCreateNewOrder(data: NewOrderFormData) {
+    setIsLoading(true)
+
+    await new Promise((resolve) => setTimeout(resolve, 4000))
 
     reset()
     const nullArray: [] = []
@@ -217,10 +220,10 @@ export function Checkout() {
               </TotalPriceContent>
               <button
                 type="submit"
-                className={'confirmButton'}
-                disabled={isSelectedCoffeesListVoid}
+                className={`confirmButton ${isLoading ? 'loading' : ''}`}
+                disabled={isSelectedCoffeesListVoid || isLoading}
               >
-                Confirmar Pedido
+                {isLoading ? 'Quase lá...' : 'Confirmar Pedido'}
               </button>
             </TotalAndConfirmOrderContainer>
           </FormConfirmOrderContainer>

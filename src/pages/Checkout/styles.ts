@@ -163,10 +163,20 @@ export const TotalAndConfirmOrderContainer = styled.div`
     text-transform: uppercase;
 
     transition: background 0.15s;
+
+    &.loading {
+      background: linear-gradient(90deg, #4caf50 50%, #7ebc80 50%);
+      background-size: 200% 100%;
+      background-position: left bottom;
+      transition: background-position 4s ease-out;
+    }
+
+    &.loading:disabled {
+      background-position: right bottom;
+    }
   }
 
   .confirmButton:disabled {
-    background: ${(props) => props.theme['yellow-300']};
     cursor: not-allowed;
   }
 
@@ -174,6 +184,7 @@ export const TotalAndConfirmOrderContainer = styled.div`
     background: ${(props) => props.theme['yellow-700']};
   }
 `
+
 export const TotalPriceContent = styled.div`
   display: flex;
   flex-direction: column;
