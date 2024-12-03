@@ -31,7 +31,7 @@ export const LocationProvider = ({ children }: { children: ReactNode }) => {
           const { latitude, longitude } = position.coords
           try {
             const response = await fetch(
-              `https://api.opencagedata.com/geocode/v1/json?q=${latitude}+${longitude}&key=1a1fc4f02267421cb8a7473e72a6d510`,
+              `https://api.opencagedata.com/geocode/v1/json?q=${latitude}+${longitude}&key=${process.env.REACT_APP_GEOAPI_KEY}`,
             )
             const data = await response.json()
             console.log(data)
