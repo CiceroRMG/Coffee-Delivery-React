@@ -7,8 +7,13 @@ import {
   SuccessInfosContent,
   SuccessMainContainer,
 } from './styles'
+import { useLocation } from 'react-router-dom'
+import { NewOrderFormData } from '../Checkout'
 
 export function Success() {
+  const location = useLocation()
+  const { orderData } = location.state as { orderData: NewOrderFormData }
+
   return (
     <>
       <SuccessContainer>
@@ -22,9 +27,14 @@ export function Success() {
               <MapPin weight="fill" size={16} className="mapImg" />
               <InfoTextDiv>
                 <span>
-                  Entrega em <strong>Rua blablablabla</strong>
+                  Entrega em{' '}
+                  <strong>
+                    {orderData.street}, {orderData.houseNumber}
+                  </strong>
                 </span>
-                <span>Cidade - Estado, SG</span>
+                <span>
+                  {orderData.district} - {orderData.city}, {orderData.uf}
+                </span>
               </InfoTextDiv>
             </InfoContent>
             <InfoContent>
@@ -45,7 +55,7 @@ export function Success() {
               <InfoTextDiv>
                 <span>Pagamento na entrega</span>
                 <span>
-                  <strong>Método de pagamento</strong>
+                  <strong>{orderData.paymentType}</strong>
                 </span>
               </InfoTextDiv>
             </InfoContent>

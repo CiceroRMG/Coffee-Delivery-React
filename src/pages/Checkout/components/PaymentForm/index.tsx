@@ -14,8 +14,14 @@ import {
   PaymentInfosContainer,
   RadioPaymentContent,
 } from './styles'
+import { useFormContext } from 'react-hook-form'
 
 export function PaymentFormData() {
+  const {
+    register,
+    formState: { errors },
+  } = useFormContext()
+
   return (
     <PaymentFormDataContainer>
       <LocationInfosContainer>
@@ -29,46 +35,57 @@ export function PaymentFormData() {
         <LocationInputsContainer>
           <input
             type="number"
-            name="cep"
             id="cepInput"
             placeholder="CEP"
-            className="cepInput"
+            className={`cepInput ${errors.cep ? 'input-error' : ''}`}
+            {...register('cep')}
           />
 
-          <input type="text" placeholder="Rua" />
+          <input
+            type="text"
+            placeholder="Rua"
+            {...register('street')}
+            className={`${errors.street ? 'input-error' : ''}`}
+          />
 
           <div className="numberAndComplementDivInputs">
             <input
               type="number"
-              name="houseNumber"
               id="houseNumberInput"
               placeholder="Número"
-              className="houseNumberInput"
+              className={`houseNumberInput ${errors.houseNumber ? 'input-error' : ''}`}
+              {...register('houseNumber')}
             />
             <input
               type="text"
               placeholder="Complemento"
-              className="complementInput"
+              className={`complementInput ${errors.complement ? 'input-error' : ''}`}
+              {...register('complement')}
             />
           </div>
 
           <div className="districtAndCityAndUFDivInputs">
-            <input type="text" placeholder="Bairro" className="districtInput" />
             <input
               type="text"
-              name="city"
-              id="cityInput"
-              placeholder="Cidade"
-              className="cityInput"
+              placeholder="Bairro"
+              className={`districtInput ${errors.district ? 'input-error' : ''}`}
+              {...register('district')}
             />
             <input
               type="text"
-              name="uf"
+              id="cityInput"
+              placeholder="Cidade"
+              className={`cityInput ${errors.city ? 'input-error' : ''}`}
+              {...register('city')}
+            />
+            <input
+              type="text"
               id="ufInput"
               max={2}
               min={2}
               placeholder="UF"
-              className="ufInput"
+              className={`ufInput ${errors.uf ? 'input-error' : ''}`}
+              {...register('uf')}
             />
           </div>
         </LocationInputsContainer>
@@ -85,27 +102,47 @@ export function PaymentFormData() {
         </PaymentInfoHeader>
         <RadioPaymentContent>
           <div>
-            <input type="radio" name="paymentType" id="creditCard" />
+            <input
+              type="radio"
+              id="creditCard"
+              value={'creditCard'}
+              {...register('paymentType')}
+            />
             <label htmlFor="creditCard">
               <CreditCard weight="regular" size={16} />
               Cartão de Crédito
             </label>
           </div>
           <div>
-            <input type="radio" name="paymentType" id="debitCard" />
+            <input
+              type="radio"
+              id="debitCard"
+              value={'debitCard'}
+              {...register('paymentType')}
+            />
             <label htmlFor="debitCard">
               <Bank weight="regular" size={16} />
               Cartão de Débito
             </label>
           </div>
           <div>
-            <input type="radio" name="paymentType" id="fisicMoney" />
+            <input
+              type="radio"
+              id="fisicMoney"
+              value={'fisicMoney'}
+              {...register('paymentType')}
+            />
             <label htmlFor="fisicMoney">
               <Money weight="regular" size={16} />
               Dinheiro
             </label>
           </div>
         </RadioPaymentContent>
+        {errors.paymentType && (
+          <span className="spanError">
+            {errors.paymentType?.message as string}
+          </span>
+        )}
       </PaymentInfosContainer>
     </PaymentFormDataContainer>
   )

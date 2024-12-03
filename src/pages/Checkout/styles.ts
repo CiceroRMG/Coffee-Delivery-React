@@ -1,16 +1,18 @@
 import styled from 'styled-components'
 
 export const CheckoutContainer = styled.div`
-  max-width: 72rem;
-  width: 100%;
-  padding: 2rem 1rem;
-  margin: 0 auto;
-
-  display: flex;
-  gap: 2rem;
-
   ul {
     list-style: none;
+  }
+
+  form {
+    max-width: 72rem;
+    width: 100%;
+    padding: 2rem 1rem;
+    margin: 0 auto;
+
+    display: flex;
+    gap: 2rem;
   }
 `
 export const FormDataContainer = styled.div`
@@ -61,6 +63,13 @@ export const FormConfirmOrderContainer = styled.div`
       padding-bottom: 1.5rem;
       border-bottom: 2px solid ${(props) => props.theme['gray-400']};
     }
+  }
+
+  .nullListItens {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
   }
 `
 export const CoffeSelectedInfosContainer = styled.div`
@@ -156,7 +165,12 @@ export const TotalAndConfirmOrderContainer = styled.div`
     transition: background 0.15s;
   }
 
-  .confirmButton:hover {
+  .confirmButton:disabled {
+    background: ${(props) => props.theme['yellow-300']};
+    cursor: not-allowed;
+  }
+
+  .confirmButton:not(:disabled):hover {
     background: ${(props) => props.theme['yellow-700']};
   }
 `

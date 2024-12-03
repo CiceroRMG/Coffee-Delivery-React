@@ -10,7 +10,7 @@ interface CoffeeOnList {
 }
 
 interface CoffeeListContextType {
-  selectedCoffees: CoffeeOnList[]
+  selectedCoffees: CoffeeOnList[] | []
   addCoffeeToList: (data: CoffeeOnList) => void
   updateCoffeeList: (data: CoffeeOnList[]) => void
 }
@@ -24,7 +24,7 @@ export function CoffeeListProvider({ children }: CoffeeListProviderProps) {
     setSelectedCoffees([...selectedCoffees, newCoffe])
   }
 
-  function updateCoffeeList(updateList: CoffeeOnList[]) {
+  function updateCoffeeList(updateList: CoffeeOnList[] | []) {
     setSelectedCoffees(updateList)
   }
 

@@ -57,6 +57,13 @@ export const LocationInputsContainer = styled.div`
     border-radius: 0.25rem;
     border: 1px solid ${(props) => props.theme['gray-400']};
     background: ${(props) => props.theme['gray-300']};
+
+    .spanError {
+      color: red;
+      font-size: 0.8rem;
+      position: absolute;
+      top: 11rem;
+    }
   }
 
   input:focus {
@@ -112,6 +119,14 @@ export const LocationInputsContainer = styled.div`
       max-width: 3.75rem;
     }
   }
+
+  .input-error {
+    outline: 1px solid red;
+  }
+
+  .input-error:focus {
+    outline: 1px solid red;
+  }
 `
 
 export const LocationInfoHeader = styled(BasedInfoHeader)`
@@ -120,7 +135,16 @@ export const LocationInfoHeader = styled(BasedInfoHeader)`
   }
 `
 
-export const PaymentInfosContainer = styled(BasedStyleContainer)``
+export const PaymentInfosContainer = styled(BasedStyleContainer)`
+  position: relative;
+
+  .spanError {
+    color: red;
+    font-size: 0.8rem;
+    position: absolute;
+    top: 11rem;
+  }
+`
 
 export const PaymentInfoHeader = styled(BasedInfoHeader)`
   svg {
