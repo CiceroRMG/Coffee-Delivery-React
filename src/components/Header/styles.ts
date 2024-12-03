@@ -22,6 +22,25 @@ export const NavContainer = styled.nav`
     align-items: center;
     padding: 0.5rem;
     border-radius: 6px;
+    position: relative;
+  }
+
+  .quantityOrdersAdded {
+    position: absolute;
+    padding: 0.15rem 0.4rem;
+    padding-top: 0.2rem;
+
+    right: -0.55rem;
+    top: -0.55rem;
+    border-radius: 999px;
+    background: ${(props) => props.theme['yellow-700']};
+
+    color: ${(props) => props.theme.white};
+    text-align: center;
+
+    font-size: 0.75rem;
+    font-weight: 700;
+    line-height: 130%;
   }
 `
 export const LocationContent = styled.div`

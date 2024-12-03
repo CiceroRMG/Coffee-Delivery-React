@@ -7,14 +7,15 @@ import {
   TagsContainer,
 } from './styles'
 import { InputNumber } from '../../../../components/InputNumber'
-import { useState } from 'react'
+import { useContext, useState } from 'react'
+import { CoffeeListContext } from '../../../../contexts/CoffeeListContext'
 
 interface Tag {
   content: string
   id: string
 }
 
-interface CoffeOnList {
+export interface CoffeOnList {
   id: string
   quantity: number
 }
@@ -37,7 +38,8 @@ export function CoffeeCard({
   price,
 }: CoffeeCardProps) {
   const [value, setValue] = useState(1)
-  const [selectedCoffees, setSelectedCoffees] = useState<CoffeOnList[]>([])
+  const { addCoffeeToList, selectedCoffees, updateCoffeeList } =
+    useContext(CoffeeListContext)
 
   function changeValue(valueChanged: number) {
     setValue(valueChanged)
@@ -49,7 +51,22 @@ export function CoffeeCard({
       quantity: value,
     }
 
-    setSelectedCoffees([...selectedCoffees, newAddedCoffe])
+    const coffeeExistsIndex = selectedCoffees.findIndex(
+      (coffe) => coffe.id === newAddedCoffe.id,
+    )
+
+    if (coffeeExistsIndex < 0) {
+      addCoffeeToList(newAddedCoffe)
+    } else {
+      const updatedCoffees = selectedCoffees.map((coffe, index) => {
+        if (index === coffeeExistsIndex) {
+          return { ...coffe, quantity: coffe.quantity + newAddedCoffe.quantity }
+        }
+        return coffe
+      })
+      updateCoffeeList(updatedCoffees)
+    }
+
     setValue(1)
   }
 
