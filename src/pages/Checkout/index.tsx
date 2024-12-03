@@ -14,14 +14,13 @@ import {
 import { InputNumber } from '../../components/InputNumber'
 import { useContext, useEffect, useState } from 'react'
 import { CoffeeListContext } from '../../contexts/CoffeeListContext'
-import { CoffeeCardProps } from '../Home/components/CoffeeCard'
 import * as zod from 'zod'
 import { FormProvider, useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useNavigate } from 'react-router-dom'
+import { coffeesList } from '../Home'
 
-const data = await fetch('/src/db/coffees.json')
-const coffeeCardsListWithInfos: CoffeeCardProps[] = await data.json()
+const coffeeCardsListWithInfos = coffeesList
 
 const newOrderFormValidationSchema = zod.object({
   cep: zod.string().min(8, 'Informe um cep').max(8),
