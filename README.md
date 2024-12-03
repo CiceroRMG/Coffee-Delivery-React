@@ -4,6 +4,7 @@ Um projeto desenvolvido para facilitar a entrega de cafés diretamente aos consu
 
 - [Link do deploy](https://coffedeliveryplus.netlify.app/)
 
+![Coffee Delivery Capa](/src/assets/readme.svg)
 ---
 
 ## 📖 Índice
